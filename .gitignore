@@ -1,0 +1,25 @@
+# Isolated Harness home used by the integration and browser checks
+.dsh-test/
+
+# Throwaway browser profiles the acceptance check drives headless Chrome with
+.chrome-profile/
+.chrome-debug/
+
+# pnpm staging created by the local `link:` install
+.pnpm-store/
+
+# Extracted DSH reference material: package docs, type declarations, and the
+# third-party bundles read while reverse-engineering the plugin contract.
+# Reproducible from the installed DSH payload; not part of this package.
+ref/
+
+# Local copies of the machine's own Harness profile, kept only as a rollback aid.
+# Never publish these: a profile directory can contain credentials and session data.
+backup/
+
+# Editor and OS noise
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+*.log

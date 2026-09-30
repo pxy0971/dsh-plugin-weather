@@ -1,0 +1,17 @@
+# Normalize line endings to LF in the repository.
+#
+# This is not cosmetic here: `tools/build-client.mjs` inlines source files into the
+# generated bundle as text, and `client/client.js` is compared byte-for-byte against
+# what the build produces. A CRLF working copy would make that comparison depend on
+# the platform, so the repository owns the line ending rather than each checkout.
+* text=auto eol=lf
+
+# Generated artifacts are text too, and are diffed as text, but they must not be
+# rewritten by a merge driver: they are reproduced by `node tools/build-client.mjs`.
+client/client.js text eol=lf linguist-generated=true
+lib/locale.js    text eol=lf linguist-generated=true
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.woff2 binary
