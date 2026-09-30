@@ -18,6 +18,7 @@ import { createWriteStream, mkdirSync, readFileSync, rmSync } from 'node:fs'
 import { setTimeout as delay } from 'node:timers/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { installPaths, resolveInstallRoot } from './dsh-install.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = join(here, '..')
@@ -30,16 +31,16 @@ const root = join(here, '..')
  * going through `cmd.exe` — keeps the arguments intact when a path contains a space,
  * which `shell: true` mangles.
  *
+ * The installation is discovered rather than hard-coded, so a contributor can run the
+ * integration checks against their own DSH by setting `DSH_INSTALL_DIR`.
+ *
  * @returns `{ executable, args, env }` for the spawn call.
  */
 function dshLaunch() {
-  const install = 'D:/AI/DeepSeek Harness'
+  const paths = installPaths(resolveInstallRoot({ required: true }))
   return {
-    executable: join(install, 'DeepSeek Harness.exe'),
-    args: [
-      '--expose-internals',
-      `${install}/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-desktop-host/lib/cli.js`,
-    ],
+    executable: paths.executable,
+    args: ['--expose-internals', paths.cli],
     env: { ELECTRON_RUN_AS_NODE: '1' },
   }
 }

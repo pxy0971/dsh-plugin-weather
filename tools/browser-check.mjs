@@ -25,6 +25,11 @@
 import { spawn } from 'node:child_process'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { setTimeout as delay } from 'node:timers/promises'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+/** Repository root, so every default path is relative to the checkout. */
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 const CHROME_CANDIDATES = [
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -53,7 +58,7 @@ const base = (positional[0] ?? 'http://127.0.0.1:19411').replace(/\/+$/, '')
 const token = positional[1] ?? ''
 const outPath = option('out', '')
 const debugPort = Number(option('port', '19422'))
-const userDataDir = option('profile', 'D:/AI/DeepSeek Harness/my-plugin/.chrome-profile')
+const userDataDir = option('profile', REPO_ROOT + '/.chrome-profile')
 
 if (token === '') {
   console.error('usage: node tools/browser-check.mjs <base-url> <token> [--out <png>]')
@@ -409,7 +414,7 @@ try {
     console.log('console errors:', JSON.stringify(consoleErrors.slice(0, 6), null, 2))
     console.log('failed requests:', JSON.stringify(failedRequests.slice(0, 6), null, 2))
     const indexHtml = await (await fetch(`${base}/`, { headers: { Cookie: setCookie.split(';', 1)[0] } })).text().catch(() => '')
-    writeFileSync('D:/AI/DeepSeek Harness/my-plugin/docs/index-dump.html', indexHtml)
+    writeFileSync(join(REPO_ROOT, 'docs', 'index-dump.html'), indexHtml)
     throw new Error('the page booted without offering the weather plugin')
   }
 

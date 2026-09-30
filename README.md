@@ -102,6 +102,7 @@ tools/test.mjs               offline bench for the core, the bundle, and the pan
 tools/test-host.mjs          offline bench for the service, the cache, and the tool
 tools/browser-check.mjs      headless-Chrome acceptance run against a live DSH
 tools/with-web.mjs           starts a throwaway `dsh web`, hands over url + token
+tools/dsh-install.mjs        finds the local DSH installation for the checks above
 tools/session-cookie.mjs     mints a session cookie from the persisted secret, so a
                              *running* Host can be interrogated without its launch URL
 tools/probe-live.mjs         is the plugin advertised and is its bundle served?
@@ -192,6 +193,12 @@ throwaway `dsh web` instance, and asserts the parts a text-only test cannot see.
 node tools/with-web.mjs --profile weathersmoke --port 19411 -- \
   node tools/browser-check.mjs --out docs/panel.png
 ```
+
+`tools/with-web.mjs` boots the installation's own packaged CLI, because the Desktop
+profile can only be started by the Desktop shell. It discovers that installation via
+`DSH_INSTALL_DIR`, the checkout's own location, or a short list of conventional paths
+(`tools/dsh-install.mjs`); on a machine where none match, it fails with the variable to
+set rather than an `ENOENT`. Any Chrome or Edge install is enough for the browser half.
 
 It covers 23 checks: the launch-token exchange and session cookie, the boot graph
 naming this plugin, the sidebar entry, the panel mounting with live Open-Meteo data,
