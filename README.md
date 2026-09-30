@@ -260,6 +260,15 @@ tool registry lazily; if that import fails, the failure is recorded on
 `service.toolError` and only the model tool is missing. The regression is locked down
 by *a missing tool package still activates the panel service* in `tools/test-host.mjs`.
 
+## What you can build with it
+
+The plugin answers when asked; it does not alert, poll, or send anything. Useful
+workflows come from combining it with other DSH parts — a standing weather brief via
+`@deepseek-ai/dsh-schedule`, or a phone push through a group-robot webhook — and some
+obvious combinations are blocked by version gaps rather than by anything missing here.
+[docs/workflows.md](docs/workflows.md) records which is which, including why the QQ
+Bot channel is currently refused by DSH.
+
 ## Notes and limits
 
 * **Forecast horizon** — `get_weather` accepts 1–16 days and defaults to 5; the panel
