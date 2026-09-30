@@ -28,7 +28,7 @@ GitHub shorthand, so the source can stay wherever you keep it:
 
 ```sh
 # from GitHub
-dsh plugin --profile <profile> add github:panxueyao/dsh-plugin-weather
+dsh plugin --profile <profile> add github:pxy0971/dsh-plugin-weather
 
 # or from a local checkout
 dsh plugin --profile <profile> add /path/to/dsh-plugin-weather

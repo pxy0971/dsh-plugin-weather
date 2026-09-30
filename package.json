@@ -30,11 +30,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/panxueyao/dsh-plugin-weather.git"
+    "url": "git+https://github.com/pxy0971/dsh-plugin-weather.git"
   },
-  "homepage": "https://github.com/panxueyao/dsh-plugin-weather",
+  "homepage": "https://github.com/pxy0971/dsh-plugin-weather",
   "bugs": {
-    "url": "https://github.com/panxueyao/dsh-plugin-weather/issues"
+    "url": "https://github.com/pxy0971/dsh-plugin-weather/issues"
   },
   "keywords": [
     "dsh-plugin",
