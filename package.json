@@ -21,12 +21,28 @@
   ],
   "scripts": {
     "build": "node tools/build-client.mjs",
-    "test": "node tools/test.mjs && node tools/test-host.mjs"
+    "test": "node tools/test.mjs && node tools/test-host.mjs",
+    "check:manifest": "node tools/check-manifest.mjs"
   },
   "engines": {
     "node": ">=22"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panxueyao/dsh-plugin-weather.git"
+  },
+  "homepage": "https://github.com/panxueyao/dsh-plugin-weather",
+  "bugs": {
+    "url": "https://github.com/panxueyao/dsh-plugin-weather/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "weather",
+    "open-meteo",
+    "panel"
+  ],
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"

@@ -23,9 +23,19 @@ it directly without a proxy.
 
 ## Install
 
+The package is not published to npm; install it from this repository. pnpm accepts a
+GitHub shorthand, so the source can stay wherever you keep it:
+
 ```sh
+# from GitHub
+dsh plugin --profile <profile> add github:panxueyao/dsh-plugin-weather
+
+# or from a local checkout
 dsh plugin --profile <profile> add /path/to/dsh-plugin-weather
 ```
+
+Either way, `dsh plugin` records the dependency **and** appends `dsh-plugin-weather` to
+that profile's `dsh.profile.bundles`, which is what makes DSH compose it.
 
 Then add the bundle to that profile's `package.json`:
 
